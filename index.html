@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciberseguridad Web Avanzada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a192f;
+            color: #e6f1ff;
+        }
+        
+        header {
+            background-color: #172a45;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin-right: 20px;
+        }
+        
+        nav a {
+            color: #64ffda;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #ffd700;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+        
+        section {
+            background-color: #172a45;
+            padding: 2em;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+        }
+        
+        h1, h2 {
+            color: #64ffda;
+        }
+        
+        p {
+            color: #8892b0;
+        }
+        
+        button {
+            background-color: transparent;
+            color: #64ffda;
+            padding: 10px 20px;
+            border: 2px solid #64ffda;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            border: 5px solid #64ffda;
+            border-top: 5px solid #0a192f;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .cyber-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background-color: #0a192f;
+            border: 1px solid #64ffda;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#amenazas">Amenazas Web</a></li>
+                <li><a href="#seguridad">Seguridad Web</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="ejemplo.html">Ejemplo</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h1>Ciberseguridad Web Avanzada</h1>
+            <p>Protege tu presencia en línea contra amenazas cibernéticas modernas.</p>
+            <button onclick="showLoading('Analizando vulnerabilidades web...', 'homeInfo')">Conoce más</button>
+            <div id="homeInfo" class="info-box">
+                <h3>Importancia de la Ciberseguridad Web</h3>
+                <p>La ciberseguridad web es crucial en la era digital actual. Protege contra ataques como inyecciones SQL, XSS, y CSRF, salvaguardando datos sensibles y manteniendo la integridad de los sitios web.</p>
+            </div>
+        </section>
+        <section id="amenazas">
+            <h2>Amenazas Web Comunes</h2>
+            <ul>
+                <li>Inyección SQL</li>
+                <li>Cross-Site Scripting (XSS)</li>
+                <li>Cross-Site Request Forgery (CSRF)</li>
+                <li>Ataques de Fuerza Bruta</li>
+            </ul>
+            <button onclick="showLoading('Analizando vectores de ataque...', 'amenazasInfo')">Detalles de Amenazas</button>
+            <div id="amenazasInfo" class="info-box">
+                <h3>Detalles de Amenazas Web</h3>
+                <p><strong>Inyección SQL:</strong> Aprovecha vulnerabilidades en la entrada de datos para manipular consultas SQL.</p>
+                <p><strong>XSS:</strong> Inyecta scripts maliciosos en páginas web vistas por otros usuarios.</p>
+                <p><strong>CSRF:</strong> Engaña a los usuarios para que realicen acciones no deseadas en un sitio donde están autenticados.</p>
+                <p><strong>Ataques de Fuerza Bruta:</strong> Intenta adivinar contraseñas probando múltiples combinaciones.</p>
+            </div>
+        </section>
+        <section id="seguridad">
+            <h2>Mejores Prácticas de Seguridad Web</h2>
+            <ul>
+                <li>Implementación de HTTPS</li>
+                <li>Validación de Entradas</li>
+                <li>Uso de Prepared Statements</li>
+                <li>Implementación de WAF</li>
+            </ul>
+            <button onclick="showLoading('Verificando protocolos de seguridad...', 'seguridadInfo')">Más Información</button>
+            <div id="seguridadInfo" class="info-box">
+                <h3>Detalles de Seguridad Web</h3>
+                <p><strong>HTTPS:</strong> Cifra la comunicación entre el navegador y el servidor.</p>
+                <p><strong>Validación de Entradas:</strong> Verifica y sanitiza todas las entradas del usuario para prevenir inyecciones.</p>
+                <p><strong>Prepared Statements:</strong> Previene inyecciones SQL separando la consulta de los datos.</p>
+                <p><strong>WAF (Web Application Firewall):</strong> Filtra y monitorea el tráfico HTTP entre una aplicación web e Internet.</p>
+            </div>
+        </section>
+        <section id="recursos">
+            <h2>Recursos de Ciberseguridad Web</h2>
+            <ul>
+                <li>OWASP Top 10</li>
+                <li>Mozilla Web Security Guidelines</li>
+                <li>Cursos en línea de Seguridad Web</li>
+            </ul>
+            <button onclick="showLoading('Cargando recursos educativos...', 'recursosInfo')">Acceder a Recursos</button>
+            <div id="recursosInfo" class="info-box">
+                <h3>Enlaces a Recursos</h3>
+                <p><strong>OWASP Top 10:</strong> Una lista estándar de las vulnerabilidades web más críticas.</p>
+                <p><strong>Mozilla Security Guidelines:</strong> Guías detalladas para desarrolladores web sobre cómo implementar seguridad.</p>
+                <p><strong>Cursos en línea:</strong> Plataformas como Coursera y edX ofrecen cursos especializados en seguridad web.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Ciberseguridad Web Avanzada</p>
+    </footer>
+    
+    <div id="loading" class="loading" style="display: none;">
+        <div class="loading-content">
+            <div class="cyber-icon">🔒</div>
+            <div class="loading-spinner"></div>
+            <p id="loadingText"></p>
+        </div>
+    </div>
+    
+    <script>
+        function showLoading(text, infoId) {
+            document.getElementById('loading').style.display = 'flex';
+            document.getElementById('loadingText').textContent = text;
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById(infoId).style.display = 'block';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Seguro - Ciberseguridad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a192f;
+            color: #e6f1ff;
+        }
+        
+        .container {
+            background-color: #172a45;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+            text-align: center;
+            width: 350px;
+            margin: 100px auto;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #64ffda;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background-color: #0d1117;
+            color: #e6f1ff;
+            border: 2px solid #30363d;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #64ffda;
+        }
+
+        button {
+            background-color: transparent;
+            color: #64ffda;
+            padding: 10px 20px;
+            border: 2px solid #64ffda;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        .alert {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .success {
+            background-color: #2ea043;
+        }
+
+        .error {
+            background-color: #d73a49;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading spinner */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            border: 5px solid #64ffda;
+            border-top: 5px solid #0a192f;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Acceso Seguro</h2>
+        <form id="login-form">
+            <input type="text" placeholder="Usuario" id="username" required>
+            <input type="password" placeholder="Contraseña" id="password" required>
+            <button type="button" onclick="verificarUsuario()">Iniciar Sesión</button>
+        </form>
+
+        <!-- Mensajes de seguridad -->
+        <div id="alert" class="alert"></div>
+    </div>
+
+    <div id="loading" class="loading" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p id="loadingText">Verificando credenciales...</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulación de base de datos de usuarios
+        const usuariosAutorizados = {
+            "usuario1": "hola1",
+            "usuario2": "MiClaveSegura456@",
+        };
+
+        // Función de verificación de usuario y contraseña
+        function verificarUsuario() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const alertBox = document.getElementById("alert");
+            const loading = document.getElementById("loading");
+
+            // Oculta los mensajes anteriores
+            alertBox.style.display = "none";
+
+            // Muestra la animación de carga
+            loading.style.display = "flex";
+
+            // Simula un tiempo de espera para el chequeo de seguridad
+            setTimeout(() => {
+                loading.style.display = "none";
+
+                if (usuariosAutorizados[username] && usuariosAutorizados[username] === password) {
+                    // Acceso permitido
+                    alertBox.innerHTML = "Acceso permitido. Bienvenido.";
+                    alertBox.className = "alert success";
+                    alertBox.style.display = "block";
+                } else {
+                    // Acceso denegado
+                    alertBox.innerHTML = "Acceso denegado. Usuario o contraseña incorrectos.";
+                    alertBox.className = "alert error";
+                    alertBox.style.display = "block";
+                }
+            }, 2000); // Simula un retraso de 2 segundos para el chequeo de seguridad
+        }
+    </script>
+
+</body>
+</html>
